@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Portfolio Admin | Pratiksha Pathak</title><link rel="stylesheet" href="admin.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="database.js"></script></head><body>
+<div id="loginView" class="login-wrap"><div class="login-card"><div class="admin-mark">PP<span>.</span></div><p class="eyebrow">PORTFOLIO ADMIN</p><h1>Welcome back</h1><p class="muted">Sign in to edit your portfolio content.</p><form id="loginForm"><label>Email<input id="username" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Password<input id="password" type="password" required autocomplete="current-password"></label><button class="primary" type="submit">Sign in</button><p id="loginError" class="error"></p></form><p class="note" id="loginModeNote">Use your Supabase admin email and password after database setup. Local demo mode remains available until Supabase is connected.</p></div></div>
+<div id="adminView" class="admin-shell hidden"><aside class="sidebar"><div class="side-brand">Pratiksha Pathak<span>.</span></div><p class="side-label">ADMINISTRATION</p><button class="side-link active" data-tab="general">General</button><button class="side-link" data-tab="hero">Home / Hero</button><button class="side-link" data-tab="about">About</button><button class="side-link" data-tab="research">Research</button><button class="side-link" data-tab="teaching">Teaching</button><button class="side-link" data-tab="presentations">Presentations</button><button class="side-link" data-tab="qualifications">Qualifications</button><button class="side-link" data-tab="experience">Experience</button><button class="side-link" data-tab="resources">Resources</button><button class="side-link" data-tab="contact">Contact Details</button><button class="side-link" data-tab="inquiries">Enquiries</button><button class="side-link" data-tab="footer">Footer Details</button><button class="side-link" data-tab="media">Photo &amp; Media</button><button class="side-link" data-tab="library">Media Library</button><button class="side-link" data-tab="database">Database</button><button class="side-link" data-tab="seo">SEO &amp; Discoverability</button><div class="side-bottom"><a href="index.html" target="_blank">View Website ↗</a><button id="logoutBtn">Log out</button></div></aside>
+<main class="dashboard"><header class="dash-header"><div><p class="eyebrow">CONTENT MANAGEMENT</p><h1>Portfolio Dashboard</h1><p class="muted">Edit your website content without touching the code.</p></div><div class="header-actions"><button id="resetBtn" class="secondary">Reset demo content</button><a class="secondary" href="index.html" target="_blank">Preview website ↗</a><button id="saveBtn" class="primary">Save changes</button></div></header><div id="status" class="status"></div>
+<section class="tab-panel active" id="tab-general"><div class="panel"><h2>General</h2><p class="muted">Basic profile, call-to-action and visual theme settings.</p><div class="grid two"><label>First name<input data-field="heroFirstName"></label><label>Last name<input data-field="heroLastName"></label><label>CV button text<input data-field="cvLabel"></label><label>Portrait badge label<input data-field="portraitLabel"></label><label class="full">Portrait badge title<input data-field="portraitTitle"></label></div><div class="theme-panel"><div class="theme-panel-head"><div><h3>Website theme</h3><p class="muted">Choose one complete visual system for the public portfolio. Your content and layout stay unchanged.</p></div><span class="theme-live-badge">Live theme</span></div><div class="theme-options"><label class="theme-option"><input type="radio" name="siteTheme" value="current" data-theme-choice><span class="theme-swatch theme-swatch-current"><i></i><i></i><i></i></span><span><strong>01 — Current Academic</strong><small>Dark, editorial and research-focused.</small></span></label><label class="theme-option"><input type="radio" name="siteTheme" value="coralNavy" data-theme-choice><span class="theme-swatch theme-swatch-coral"><i></i><i></i><i></i></span><span><strong>02 — Coral &amp; Navy</strong><small>Modern, energetic and professional.</small></span></label><label class="theme-option"><input type="radio" name="siteTheme" value="emeraldGold" data-theme-choice><span class="theme-swatch theme-swatch-emerald"><i></i><i></i><i></i></span><span><strong>03 — Emerald &amp; Gold</strong><small>Premium, elegant and academic.</small></span></label></div><input type="hidden" data-field="siteTheme" value="current"><p class="theme-note">Theme selection is saved with your portfolio content and applies to the public website after saving.</p></div></div></section>
+<section class="tab-panel" id="tab-seo"><div class="panel"><h2>SEO &amp; Discoverability</h2><p class="muted">Control the public search title, description, canonical URL and social preview information. These settings are saved with your portfolio content.</p><div class="grid two"><label>SEO page title<input data-field="seoTitle" maxlength="70" placeholder="Pratiksha Pathak | Academic Portfolio"></label><label>Site / canonical URL<input data-field="siteUrl" type="url" placeholder="https://yourdomain.com"></label><label class="full">Meta description<textarea data-field="seoDescription" maxlength="160" placeholder="A concise description for Google and social previews."></textarea></label><label>Social preview image URL<input data-field="ogImage" placeholder="Leave blank to use assets/og-preview.png"></label><label>SEO keywords<input data-field="seoKeywords" placeholder="AI in HRM, HRM, Management, Researcher"></label></div><div class="preview-note"><strong>V43 files:</strong> favicon, sitemap.xml, robots.txt and a 1200×630 social preview are included. Before V46 launch, replace the placeholder domain in <code>robots.txt</code> and <code>sitemap.xml</code>, or set your final domain and regenerate/update those files.</div></div></section>
+<section class="tab-panel" id="tab-hero"><div class="panel"><h2>Home / Hero</h2><div class="grid"><label>Eyebrow<input data-field="heroEyebrow"></label><label>Professional headline<textarea data-field="heroTitle"></textarea></label><label>Hero introduction<textarea data-field="heroText"></textarea></label><label>Research button text<input data-field="heroResearchCta"></label><label>Teaching button text<input data-field="heroTeachingCta"></label><label>CV button text<input data-field="heroCvCta"></label></div></div></section>
+<section class="tab-panel" id="tab-about"><div class="panel"><h2>About</h2><div class="grid"><label>Section heading<input data-field="aboutHeading"></label><label>Paragraph 1<textarea data-field="aboutP1"></textarea></label><label>Paragraph 2<textarea data-field="aboutP2"></textarea></label></div></div></section>
+<section class="tab-panel" id="tab-research">
+  <div class="panel">
+    <h2>Research Portfolio Pro</h2>
+    <p class="muted">Manage publications, working papers, research projects, and other research outputs. Metadata, categories, DOI links, featured status, and publication visibility are stored with each item.</p>
+    <div class="preview-note">Tip: keep titles and abstracts concise. DOI and PDF fields can be left blank until the publication is ready.</div>
+    <div id="publicationsEditor" class="list-editor"></div>
+    <button type="button" id="addPublication" class="secondary">+ Add publication</button>
+  </div>
+</section>
+<section class="tab-panel" id="tab-teaching">
+  <div class="panel">
+    <h2>Teaching Manager</h2>
+    <p class="muted">Add and manage demo lectures, YouTube videos, teaching resources, and future course content. These entries appear in the public Teaching section.</p>
+    <div class="preview-note">You can leave URLs as placeholders for now. Add your real YouTube/video links later.</div>
+    <div id="teachingItemsEditor" class="list-editor"></div>
+    <button type="button" id="addTeachingItem" class="secondary">+ Add teaching resource</button>
+  </div>
+  <div class="panel">
+    <h2>Teaching profile</h2>
+    <p class="muted">These fields control your teaching overview text.</p>
+    <div class="grid two">
+      <label>Teaching heading<input data-field="teachingHeading"></label>
+      <label>Teaching subtitle<input data-field="teachingP1"></label>
+      <label class="full">Teaching overview<textarea data-field="teachingP1"></textarea></label>
+      <label class="full">Teaching interests<textarea data-field="teachingP2"></textarea></label>
+      <label class="full">Teaching philosophy<textarea data-field="teachingPhilosophy" placeholder="Explain how you connect theory, practice, discussion, technology and evidence-based learning."></textarea></label>
+      <label class="full">Teaching philosophy supporting text<textarea data-field="teachingPhilosophySupport" placeholder="A short supporting statement about your teaching approach."></textarea></label>
+      <label class="full">Subjects taught / demonstrated<textarea data-field="subjectsTaught" placeholder="Human Resource Management, Management Principles, Organisational Behaviour"></textarea></label>
+      <label class="full">Subjects you can teach<textarea data-field="subjectsCanTeach" placeholder="HR Analytics, AI in HRM, Research Methodology, Strategic HRM"></textarea></label>
+    </div>
+  </div>
+</section>
+<section class="tab-panel" id="tab-presentations">
+  <div class="panel">
+    <h2>Presentations Manager</h2>
+    <p class="muted">Manage multiple academic or professional presentations just like Teaching Videos. Each presentation gets its own public card and can use a URL or uploaded PDF/PPT/PPTX file.</p>
+    <div class="preview-note">Add as many presentations as you need. They will appear as individual cards in the public Presentations section.</div>
+    <div id="presentationItemsEditor" class="list-editor"></div>
+    <button type="button" id="addPresentationItem" class="secondary">+ Add presentation</button>
+  </div>
+</section>
+<section class="tab-panel" id="tab-qualifications"><div class="panel"><h2>Qualifications</h2><p class="muted">Add, remove, reorder later, and edit individual qualification entries from the dashboard.</p><div id="qualificationsEditor" class="list-editor"></div><button type="button" id="addQualification" class="secondary">+ Add qualification</button></div></section>
+<section class="tab-panel" id="tab-experience">
+  <div class="panel">
+    <h2>Experience Manager</h2>
+    <p class="muted">Add your complete professional history. Every entry can include role, organisation, dates, responsibilities and achievements.</p>
+    <div class="grid">
+      <label>Experience heading<input data-field="experienceHeading"></label>
+      <label>Experience introduction<textarea data-field="experienceText"></textarea></label>
+    </div>
+    <div id="experienceItemsEditor" class="list-editor"></div>
+    <button type="button" id="addExperience" class="secondary">+ Add experience</button>
+  </div>
+</section>
+<section class="tab-panel" id="tab-resources"><div class="panel"><h2>Resources</h2><p class="muted">Manage the resource cards shown on your public website. Academic CV and Professional Resume are managed from Photo &amp; Media and automatically linked here when published. Other resources can use an external URL or uploaded file.</p><div id="resourcesEditor" class="list-editor"></div><button type="button" id="addResource" class="secondary">+ Add resource</button></div></section>
+<section class="tab-panel" id="tab-contact">
+  <div class="panel">
+    <h2>Contact Details</h2>
+    <p class="muted">Manage the contact information displayed in the public Contact section and footer.</p>
+    <div class="grid two">
+      <label>Email address
+        <input data-field="email" type="email" placeholder="your.email@example.com">
+      </label>
+      <label>Mobile number
+        <input data-field="phone" placeholder="+91 XXXXX XXXXX">
+      </label>
+      <label>Location
+        <input data-field="footerLocation" placeholder="Pune, Maharashtra, India">
+      </label>
+      <label>LinkedIn URL
+        <input data-field="linkedin" placeholder="https://www.linkedin.com/in/...">
+      </label>
+      <label>Google Scholar URL
+        <input data-field="scholar" placeholder="https://scholar.google.com/...">
+      </label>
+      <label>ORCID URL
+        <input data-field="orcid" placeholder="https://orcid.org/...">
+      </label>
+      <label class="full">Contact section heading
+        <input data-field="contactHeading">
+      </label>
+      <label class="full">Contact section introduction
+        <textarea data-field="contactIntro"></textarea>
+      </label>
+    </div>
+  </div>
+</section>
+<section class="tab-panel" id="tab-inquiries">
+  <div class="panel">
+    <h2>Enquiries</h2>
+    <p class="muted">Review messages submitted through the public contact form. New messages are marked unread.</p>
+    <div class="inquiry-toolbar"><button type="button" class="secondary" id="refreshInquiries">Refresh enquiries</button><span id="inquirySummary" class="muted"></span></div>
+    <div id="inquiriesList" class="inquiries-list"></div>
+  </div>
+</section><section class="tab-panel" id="tab-footer">
+  <div class="panel">
+    <h2>Footer Details</h2>
+    <p class="muted">Edit the footer text, navigation labels, and Connect icons/links shown on the public website.</p>
+
+    <div class="grid two">
+      <label>Footer description
+        <textarea data-field="footerDescription"></textarea>
+      </label>
+      <label>Footer location
+        <input data-field="footerLocation">
+      </label>
+      <label>Copyright text
+        <input data-field="footerCopyright">
+      </label>
+      <label>Footer tagline
+        <input data-field="footerTagline">
+      </label>
+      <label>Navigate heading
+        <input data-field="footerNavHeading">
+      </label>
+      <label>Connect heading
+        <input data-field="footerConnectHeading">
+      </label>
+    </div>
+
+    <h3 class="media-section-title">Connect — Icons &amp; Links</h3>
+    <p class="muted">Each item can be enabled/disabled, renamed, linked to any URL, and given its own uploaded icon.</p>
+
+    <div class="social-editor-list">
+      <div class="social-editor-row" data-social-editor="email">
+        <div class="social-editor-title"><strong>Email / Gmail</strong><span class="social-editor-status" data-social-status="email"></span></div>
+        <div class="social-editor-grid">
+          <label>Label<input data-social-label="email" value="Gmail"></label>
+          <label>Link / Email<input data-social-url="email" placeholder="mailto:you@example.com"></label>
+          <label>Icon image<input data-social-icon="email" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+          <label class="checkbox-row"><input data-social-enabled="email" type="checkbox" checked> Show this icon</label>
+        </div>
+        <div class="social-icon-preview" data-social-preview="email">Default icon</div>
+      </div>
+
+      <div class="social-editor-row" data-social-editor="linkedin">
+        <div class="social-editor-title"><strong>LinkedIn</strong><span class="social-editor-status" data-social-status="linkedin"></span></div>
+        <div class="social-editor-grid">
+          <label>Label<input data-social-label="linkedin" value="LinkedIn"></label>
+          <label>Profile URL<input data-social-url="linkedin" placeholder="https://www.linkedin.com/in/..."></label>
+          <label>Icon image<input data-social-icon="linkedin" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+          <label class="checkbox-row"><input data-social-enabled="linkedin" type="checkbox" checked> Show this icon</label>
+        </div>
+        <div class="social-icon-preview" data-social-preview="linkedin">Default icon</div>
+      </div>
+
+      <div class="social-editor-row" data-social-editor="scholar">
+        <div class="social-editor-title"><strong>Google Scholar</strong><span class="social-editor-status" data-social-status="scholar"></span></div>
+        <div class="social-editor-grid">
+          <label>Label<input data-social-label="scholar" value="Google Scholar"></label>
+          <label>Profile URL<input data-social-url="scholar" placeholder="https://scholar.google.com/citations?..."></label>
+          <label>Icon image<input data-social-icon="scholar" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+          <label class="checkbox-row"><input data-social-enabled="scholar" type="checkbox" checked> Show this icon</label>
+        </div>
+        <div class="social-icon-preview" data-social-preview="scholar">Default icon</div>
+      </div>
+
+      <div class="social-editor-row" data-social-editor="orcid">
+        <div class="social-editor-title"><strong>ORCID</strong><span class="social-editor-status" data-social-status="orcid"></span></div>
+        <div class="social-editor-grid">
+          <label>Label<input data-social-label="orcid" value="ORCID"></label>
+          <label>Profile URL<input data-social-url="orcid" placeholder="https://orcid.org/..."></label>
+          <label>Icon image<input data-social-icon="orcid" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+          <label class="checkbox-row"><input data-social-enabled="orcid" type="checkbox" checked> Show this icon</label>
+        </div>
+        <div class="social-icon-preview" data-social-preview="orcid">Default icon</div>
+      </div>
+    </div>
+
+    <div class="button-row footer-save-row">
+      <button type="button" id="saveFooterSocials" class="primary">Save Connect Links</button>
+      <button type="button" id="resetFooterSocials" class="secondary">Reset Icons to Defaults</button>
+    </div>
+  </div>
+</section>
+<section class="tab-panel" id="tab-media">
+  <div class="panel">
+    <h2>Photo &amp; Media</h2>
+    <p class="muted">Manage your portrait, website logo, CV PDF, and footer social icons. Uploads are stored in Supabase Storage so they work across devices.</p>
+
+    <h3 class="media-section-title">Website Logo</h3>
+    <p class="muted">Add an optional logo for the top-left website header. You can replace or remove it anytime. The uploaded logo is stored in Supabase Storage.</p>
+    <div class="media-manager-card">
+      <div class="media-preview" id="siteLogoPreview"><div class="media-preview-placeholder">No logo uploaded</div></div>
+      <div class="media-manager-controls">
+        <label>Logo file
+          <input id="siteLogoInput" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+        </label>
+        <label>Logo alt text
+          <input id="siteLogoAlt" placeholder="Pratiksha Pathak logo">
+        </label>
+        <label class="checkbox-row"><input id="siteLogoEnabled" type="checkbox" checked> <span><strong>Show logo in the top-left header</strong><small>Saved logos are shown by default. Uncheck only if you want to hide it.</small></span></label>
+        <label class="checkbox-row"><input id="siteLogoHideName" type="checkbox"> <span><strong>Show logo only (hide the name)</strong><small>Keep unchecked to display the logo alongside “PRATIKSHA PATHAK”.</small></span></label>
+        <div class="button-row">
+          <button type="button" id="saveSiteLogo" class="primary">Save Logo</button>
+          <button type="button" id="removeSiteLogo" class="secondary">Remove Logo</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="media-section-title">Profile Photo</h3>
+    <div class="image-upload">
+      <img id="imagePreview" class="image-preview" src="assets/profile.png" alt="Profile preview">
+      <div>
+        <label>Profile photo
+          <input id="profileImageInput" type="file" accept="image/jpeg,image/png,image/webp">
+        </label>
+        <div class="button-row">
+          <button type="button" id="saveProfilePhoto" class="primary">Save Profile Photo</button>
+          <button type="button" id="removeProfilePhoto" class="secondary">Use Default Photo</button>
+        </div>
+        <p class="muted">The floating portrait animation is part of the website design. New uploads are stored in Supabase Storage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>CV &amp; Resume PDFs</h2>
+    <p class="muted">Keep separate documents for academic applications and corporate HR applications. Both can be published as independent Resources.</p>
+    <h3 class="media-section-title">Academic CV</h3>
+    <div class="media-manager-card">
+      <div class="media-preview cv-preview" id="cvPreview"><div class="media-preview-placeholder">No Academic CV uploaded</div></div>
+      <div class="media-manager-controls">
+        <label>Upload Academic CV PDF
+          <input id="cvPdfInput" type="file" accept="application/pdf,.pdf">
+        </label>
+        <div class="button-row">
+          <button type="button" id="saveCvPdf" class="primary">Save Academic CV</button>
+          <button type="button" id="removeCvPdf" class="secondary">Remove Academic CV</button>
+        </div>
+        <p class="small-note">Used by the main <strong>Download CV</strong> button and published as <strong>Academic CV</strong> in Resources.</p>
+      </div>
+    </div>
+    <h3 class="media-section-title">Professional Resume — Corporate HR</h3>
+    <div class="media-manager-card">
+      <div class="media-preview cv-preview" id="corporateResumePreview"><div class="media-preview-placeholder">No Professional Resume uploaded</div></div>
+      <div class="media-manager-controls">
+        <label>Upload Professional Resume PDF
+          <input id="corporateResumeInput" type="file" accept="application/pdf,.pdf">
+        </label>
+        <div class="button-row">
+          <button type="button" id="saveCorporateResume" class="primary">Save Professional Resume</button>
+          <button type="button" id="removeCorporateResume" class="secondary">Remove Professional Resume</button>
+        </div>
+        <p class="small-note">Published separately as <strong>Professional Resume</strong> in Resources and does not replace your Academic CV.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tab-panel" id="tab-library">
+  <div class="panel">
+    <div class="library-header">
+      <div><h2>Media Library</h2><p class="muted">One central place for portfolio files, images, PDFs, presentation assets, teaching media and reusable thumbnails.</p></div>
+      <button type="button" id="addMediaLibraryItem" class="primary">+ Add media</button>
+    </div>
+    <div class="library-help"><strong>How to use it:</strong> upload once, add a clear title/category, keep drafts private until ready, feature only your strongest assets, and use <strong>Replace</strong> when a file needs updating. The library preserves the media record while swapping the stored file.</div>
+    <div class="media-library-toolbar">
+      <label class="library-search">Search media<input id="mediaLibrarySearch" type="search" placeholder="Search title, filename, category…"></label>
+      <label>Type<select id="mediaLibraryType"><option value="all">All types</option><option value="image">Images</option><option value="pdf">PDF</option><option value="video">Video</option><option value="presentation">Presentations</option><option value="document">Documents</option><option value="spreadsheet">Spreadsheets</option><option value="other">Other</option></select></label>
+      <label>Status<select id="mediaLibraryStatusFilter"><option value="all">All status</option><option value="published">Published</option><option value="draft">Draft</option><option value="featured">Featured</option></select></label>
+      <label>Category<select id="mediaLibraryCategory"><option value="all">All categories</option></select></label>
+    </div>
+    <div class="library-summary" id="mediaLibrarySummary"></div>
+    <div id="mediaLibraryStatus" class="media-library-status">Loading media library…</div>
+    <div id="mediaLibraryEditor" class="media-library-grid"></div>
+    <div class="media-library-actions"><button type="button" id="saveMediaLibrary" class="primary">Save Media Library</button></div>
+  </div>
+</section>
+<section class="tab-panel" id="tab-database"><div class="panel"><h2>Database</h2><p class="muted">This portfolio is now configured for your Supabase project. Your dashboard edits can be stored online and used by the public website.</p><div class="preview-note">Supabase is cloud-based — no database software needs to be installed on your computer. The Project URL and publishable key are already configured for this project.</div><div class="database-card"><h3>Supabase connection</h3><div class="grid two"><label>Project URL<input id="supabaseUrl" placeholder="https://your-project.supabase.co"></label><label>Anon / Publishable Key<input id="supabaseKey" placeholder="eyJ..." autocomplete="off"></label></div><div class="button-row" style="margin-top:18px"><button type="button" id="saveDbConfig" class="primary">Save Connection</button><button type="button" id="testDbConnection" class="secondary">Test Connection</button><button type="button" id="clearDbConfig" class="secondary">Clear</button><button type="button" id="checkAuthStatus" class="secondary">Check Auth</button></div><div id="dbStatus" class="db-status">Not connected yet.</div></div><div class="database-card"><h3>Setup checklist</h3><ol class="setup-list"><li>Create a free Supabase project.</li><li>Run <strong>supabase-schema.sql</strong> in SQL Editor.</li><li>Create your admin user under Authentication → Users.</li><li>Add that user UUID to <strong>admin_users</strong> using the SQL comment at the bottom of the schema.</li><li>Paste the Project URL + anon/publishable key above and test the connection.</li></ol></div><div class="database-card"><h3>What this will give you</h3><ul><li>Online storage for portfolio content.</li><li>Real admin authentication can replace the current local demo login.</li><li>Content can be edited from the dashboard and persist across devices after deployment.</li><li>The Media Library now uses the existing <strong>portfolio-media</strong> Supabase Storage bucket for central file management.</li></ul></div><div class="database-card"><h3>Next database step</h3><p class="muted">Run <strong>SUPABASE_PATCH_V40.sql</strong> after the V39 patch if the Media Library table needs to be created or refreshed. Existing media rows are preserved.</p></div></div></section></main></div><script src="admin.js"></script><script src="presentations-v25.js"></script>
+</body></html>

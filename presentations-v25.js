@@ -1,0 +1,1 @@
+window.presentationResourceDefaults={category:'Presentations',buttonText:'Open Presentation',published:true};

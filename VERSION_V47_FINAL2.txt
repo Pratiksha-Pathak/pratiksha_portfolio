@@ -1,0 +1,3 @@
+V47 FINAL2 — Theme text consistency fix
+Fixed light-theme paragraph text for Bridging Academia & Industry and Academic Focus in Coral & Navy and Emerald & Gold.
+No Supabase patch required.

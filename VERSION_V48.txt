@@ -1,0 +1,5 @@
+V48 — Final light-theme typography + Academic Focus polish
+Base: V47 FINAL2.
+Fixed readable text for profile/about paragraphs, Academic Focus heading/subtitle, and Academic Focus topics in Coral & Navy and Emerald & Gold.
+Theme 01 intentionally unchanged.
+No Supabase patch required.
