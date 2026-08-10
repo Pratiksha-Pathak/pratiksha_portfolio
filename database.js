@@ -161,9 +161,11 @@
       message:String(payload?.message||'').trim().slice(0,5000),
       source:String(payload?.source||'portfolio-website').trim().slice(0,60)
     };
-    const {data,error}=await c.from('contact_inquiries').insert(clean).select('id,created_at').single();
-    if(error) throw error;
-    return data;
+    const {error}=await c.from('contact_inquiries').insert(clean);
+
+if(error) throw error;
+
+return true;
   }
   async function loadContactInquiries(){
     const c=client();
