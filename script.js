@@ -312,8 +312,7 @@ async function loadCloudContent(){
       const item={icon,title,text:description,label:'Open resource →',url:file.url,category:title==='Academic CV'?'Academic':'Professional'};
       if(idx>=0) list[idx]=item; else list.unshift(item);
     };
-    ensureMediaResource('Academic CV','Research, teaching, qualifications, and academic profile.','▤',academic);
-    ensureMediaResource('Professional Resume','Corporate HR experience, skills, projects, and professional profile.','▣',resume);
+  
     list=list.map(x=>String(x.title||'').trim().toLowerCase()==='presentations'
       ? {...x,url:'#presentations',label:'Explore presentations →',text:'Academic presentations and professional materials.',category:'Academic'}
       : x);
